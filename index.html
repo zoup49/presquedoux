@@ -9,58 +9,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <meta property="og:title" content="Presque Doux" />
-  <meta property="og:description" content="Collectif organisateur d'événements sonores et culturels." />
   <meta property="og:url" content="https://presquedoux.ca" />
 </head>
 <body>
 
+  <!-- NAVIGATION -->
   <nav class="nav">
     <a href="index.html" class="nav-titre">Presque Doux</a>
     <div class="nav-liens">
-      <a href="index.html" class="actif">accueil</a>
-      <a href="evenements.html">événements</a>
+      <a href="index.html" class="actif">événements</a>
       <a href="podcast.html">podcast</a>
-      <a href="apropos.html">à propos</a>
-      <a href="systeme-son.html">système son</a>
     </div>
   </nav>
 
-  <div class="bloc-intro">
-    <p class="surtitre">collectif — Québec</p>
-    <h1>Sons,<br />espaces,<br />communauté.</h1>
+  <!-- GRILLE ÉVÉNEMENTS — ordre chronologique -->
+  <!-- Pour ajouter un événement : copie une .evenement-card et insère-la au bon endroit -->
+  <div class="evenements-grille">
+
+    <!-- 1. PAYSAGE SONORE — 13 juin 2026 -->
+    <div class="evenement-card">
+      <img src="paysage.jpg" alt="Paysage Sonore" class="evenement-photo" />
+      <div class="evenement-info">
+        <span class="evenement-nom">Paysage Sonore</span>
+        <span class="evenement-details">ven. 13 juin 2026</span>
+        <span class="evenement-details">Rocher Blanc · 18h–20h</span>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="evenement-lien">→ infos</a>
+      </div>
+    </div>
+
+    <!-- 2. TERRE LUNE — 29 août 2026 -->
+    <div class="evenement-card">
+      <img src="5.jpg" alt="Terre Lune" class="evenement-photo" />
+      <div class="evenement-info">
+        <span class="evenement-nom">Terre Lune</span>
+        <span class="evenement-details">sam. 29 août 2026</span>
+        <span class="evenement-details">Rave en forêt · lieu annoncé la veille</span>
+        <a href="https://terrelune.ca" target="_blank" rel="noopener noreferrer" class="evenement-lien">→ billets</a>
+      </div>
+    </div>
+
+    <!-- Ajoute d'autres événements ici -->
+
   </div>
 
-  <hr class="sep" />
-
-  <div class="bloc">
-    <p>
-      Presque Doux organise des événements sonores et culturels au Québec —
-      en forêt, en nature, dans des lieux insolites.
-    </p>
-  </div>
-
-  <div class="bloc">
-    <h3>projets</h3>
-    <ul>
-      <li><a href="evenements.html">Terre Lune</a> — rave en forêt, pleine lune d'août</li>
-      <li><a href="evenements.html">Paysage Sonore</a> — musique ambiante en nature</li>
-      <li>Soirées techno punk — lieux insolites</li>
-      <li><a href="podcast.html">Podcast</a> — en développement</li>
-    </ul>
-  </div>
-
-  <hr class="sep" />
-
-  <div class="bloc">
-    <h3>prochain événement</h3>
-    <p>
-      <a href="https://terrelune.ca" target="_blank" rel="noopener noreferrer">Terre Lune</a>
-      — Samedi 29 août 2026, rave en forêt
-    </p>
-  </div>
-
+  <!-- PIED DE PAGE -->
   <footer>
-    <span class="footer-gauche">Presque Doux, Québec</span>
+    <span class="footer-gauche">Presque Doux</span>
     <span class="footer-droite"><a href="mailto:info@presquedoux.ca">info@presquedoux.ca</a></span>
   </footer>
 

@@ -23,11 +23,12 @@ body {
 }
 .nav-titre {
   font-family: 'Darker Grotesque', sans-serif;
-  font-weight: 800;
-  font-size: 1.1em;
-  letter-spacing: 0.02em;
+  font-weight: 900;
+  font-size: 2.2em;
+  letter-spacing: -0.01em;
   text-decoration: none;
   color: #111;
+  line-height: 1;
 }
 .nav-liens {
   display: flex;
@@ -127,45 +128,58 @@ li::before {
   display: block;
 }
 
-/* --- PAGE ÉVÉNEMENTS --- */
-.evenement {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1rem 0;
-  border-bottom: 1px solid #bbb;
+/* --- PAGE ÉVÉNEMENTS : GRILLE --- */
+.evenements-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes par défaut */
   gap: 2rem;
+  margin-bottom: 3rem;
 }
-.evenement:first-of-type { border-top: 1px solid #bbb; }
-.evenement-gauche {
+
+/* Chaque carte */
+.evenement-card {
+  display: flex;
+  flex-direction: column;
+}
+.evenement-photo {
+  width: 80%;
+  aspect-ratio: 3 / 4;  /* Format portrait affiche */
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.evenement-info {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
 }
 .evenement-nom {
-  font-family: 'Darker Grotesque', sans-serif;
-  font-weight: 800;
-  font-size: 1.6em;
-  line-height: 1;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 .evenement-details {
-  font-size: 14px;
-  font-weight: 400;
-  color: #666;
+  font-size: 18px;
+  font-weight: 00;
+  color: #000000;
 }
 .evenement-lien {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-}
-.tag {
-  font-size: 10px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #888;
+  text-decoration: none;
+  margin-top: 0rem;
+  letter-spacing: 0.02em;
+}
+.evenement-lien:hover { opacity: 0.5; }
+
+/* Responsive : 2 colonnes sur tablette, 1 sur mobile */
+@media (max-width: 800px) {
+  .evenements-grille { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .evenements-grille { grid-template-columns: 1fr; }
 }
 
 /* --- PAGE PODCAST --- */
