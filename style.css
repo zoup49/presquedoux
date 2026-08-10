@@ -1,13 +1,21 @@
 /* STYLE.CSS — Presque Doux */
-/* Design large, typo grotesque bold */
+
+/* --- COULEURS ---
+   Change une valeur ici, ça s'applique partout dans le site. */
+:root {
+  --paper: #f0ece4;      /* fond */
+  --ink: #111;           /* texte principal */
+  --ink-soft: #555;      /* texte secondaire */
+  --line: #bbb;          /* filets de séparation */
+}
 
 /* --- BASE --- */
 body {
   font-family: 'Darker Grotesque', sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  color: #111;
-  background-color: #f0ece4;
+  color: var(--ink);
+  background-color: var(--paper);
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 3rem;
@@ -27,7 +35,7 @@ body {
   font-size: 2.2em;
   letter-spacing: -0.01em;
   text-decoration: none;
-  color: #111;
+  color: var(--ink);
   line-height: 1;
 }
 .nav-liens {
@@ -38,7 +46,7 @@ body {
   font-weight: 500;
   font-size: 15px;
   text-decoration: none;
-  color: #111;
+  color: var(--ink);
   letter-spacing: 0.03em;
 }
 .nav-liens a:hover { opacity: 0.4; }
@@ -46,7 +54,6 @@ body {
 
 /* --- TITRES --- */
 h1 {
-  font-family: 'Darker Grotesque', sans-serif;
   font-weight: 900;
   font-size: 5.5em;
   line-height: 0.95;
@@ -56,7 +63,6 @@ h1 {
   max-width: 900px;
 }
 h2 {
-  font-family: 'Darker Grotesque', sans-serif;
   font-weight: 800;
   font-size: 2.8em;
   line-height: 1;
@@ -82,7 +88,7 @@ p {
 
 /* --- LIENS --- */
 a {
-  color: #111;
+  color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -109,41 +115,28 @@ li::before {
 /* --- SÉPARATEUR --- */
 .sep {
   border: none;
-  border-top: 1px solid #bbb;
+  border-top: 1px solid var(--line);
   margin: 3rem 0;
 }
 
 /* --- BLOCS --- */
 .bloc { margin-bottom: 3rem; }
 
-/* --- PAGE ACCUEIL --- */
-.bloc-intro { margin-bottom: 4rem; }
-.surtitre {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 1rem;
-  display: block;
-}
-
 /* --- PAGE ÉVÉNEMENTS : GRILLE --- */
 .evenements-grille {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes par défaut */
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
   gap: 2rem;
   margin-bottom: 3rem;
 }
 
-/* Chaque carte */
 .evenement-card {
   display: flex;
   flex-direction: column;
 }
 .evenement-photo {
-  width: 80%;
-  aspect-ratio: 3 / 4;  /* Format portrait affiche */
+  width: 100%;
+  aspect-ratio: 3 / 4;   /* format portrait affiche */
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -156,31 +149,24 @@ li::before {
 }
 .evenement-nom {
   font-weight: 900;
-  font-size: 20px;
+  font-size: 1.1em;
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
 .evenement-details {
-  font-size: 18px;
-  font-weight: 00;
-  color: #000000;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-soft);
 }
 .evenement-lien {
-  font-size: 20px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  margin-top: 0rem;
+  margin-top: 0.3rem;
   letter-spacing: 0.02em;
+  align-self: flex-start;
 }
 .evenement-lien:hover { opacity: 0.5; }
-
-/* Responsive : 2 colonnes sur tablette, 1 sur mobile */
-@media (max-width: 800px) {
-  .evenements-grille { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .evenements-grille { grid-template-columns: 1fr; }
-}
 
 /* --- PAGE PODCAST --- */
 .episode {
@@ -189,9 +175,9 @@ li::before {
   align-items: center;
   gap: 1.5rem;
   padding: 1rem 0;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid var(--line);
 }
-.episode:first-of-type { border-top: 1px solid #bbb; }
+.episode:first-of-type { border-top: 1px solid var(--line); }
 .episode-num {
   font-weight: 900;
   font-size: 1.8em;
@@ -211,7 +197,7 @@ li::before {
 .episode-details {
   font-size: 14px;
   font-weight: 400;
-  color: #666;
+  color: var(--ink-soft);
 }
 .episode-lien {
   font-size: 14px;
@@ -224,7 +210,7 @@ li::before {
 footer {
   margin-top: 5rem;
   padding-top: 1.5rem;
-  border-top: 2px solid #111;
+  border-top: 2px solid var(--ink);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -242,13 +228,16 @@ footer {
 .footer-droite a:hover { opacity: 0.5; }
 
 /* --- RESPONSIVE --- */
+@media (max-width: 800px) {
+  .evenements-grille { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 640px) {
   body { padding: 1.5rem 1.2rem; }
   h1 { font-size: 3.2em; }
   h2 { font-size: 2em; }
   .nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
   .nav-liens { flex-wrap: wrap; gap: 1rem; }
-  .evenement { flex-direction: column; gap: 0.4rem; }
+  .evenements-grille { grid-template-columns: 1fr; }
   .episode { grid-template-columns: 2.5rem 1fr; }
   .episode-lien { grid-column: 2; }
   footer { flex-direction: column; gap: 0.5rem; }
