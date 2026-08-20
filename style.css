@@ -1,244 +1,503 @@
-/* STYLE.CSS — Presque Doux */
+/* =========================================================
+   STYLE.CSS — Presque Doux (collectif)
+   ========================================================= */
 
-/* --- COULEURS ---
-   Change une valeur ici, ça s'applique partout dans le site. */
+/* --- POLICE : les 2 lignes à changer pour changer toute la typo du site ---
+   Pour Cormorant Garamond, remplace par :
+   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+   --police: 'Cormorant Garamond', Georgia, serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
 :root {
-  --paper: #f0ece4;      /* fond */
-  --ink: #111;           /* texte principal */
-  --ink-soft: #555;      /* texte secondaire */
-  --line: #bbb;          /* filets de séparation */
+  --police: 'EB Garamond', Georgia, serif;
 }
 
-/* --- BASE --- */
-body {
-  font-family: 'Darker Grotesque', sans-serif;
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--ink);
-  background-color: var(--paper);
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 3rem;
+/* --- COULEURS : change ici, ça s'applique partout --- */
+:root {
+  --creme:  #fdfbf2;   /* fond de page */
+  --encre:  #1a1a18;   /* texte principal */
+  --rouge:  #c8102e;   /* accent principal (titres) */
+  --vert:   #8a9a2b;   /* accent secondaire */
+  --doux:   #6b6b60;   /* texte secondaire */
 }
+
 * { box-sizing: border-box; }
 
-/* --- NAVIGATION --- */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--police);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--encre);
+  background-color: var(--creme);
+  overflow-x: hidden;   /* évite le scroll horizontal causé par les décos */
 }
-.nav-titre {
-  font-family: 'Darker Grotesque', sans-serif;
-  font-weight: 900;
-  font-size: 2.2em;
-  letter-spacing: -0.01em;
+
+/* =========================================================
+   BANDEAU D'ÉTOILES EN HAUT
+   ========================================================= */
+.bandeau {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--encre);
+  overflow: hidden;
+}
+.bandeau svg { width: 42px; height: 42px; flex-shrink: 0; }
+
+/* =========================================================
+   CONTENEUR PRINCIPAL
+   ========================================================= */
+.page {
+  position: relative;   /* ancre les décorations en absolute */
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 5rem 2.5rem;
+}
+
+/* =========================================================
+   DÉCORATIONS FLOTTANTES
+   Chaque .deco est positionnée librement.
+   Modifie top / left / right / width pour la déplacer.
+   ========================================================= */
+.deco {
+  position: absolute;
+  pointer-events: none;   /* ne bloque jamais les clics */
+  z-index: 0;
+}
+
+/* Le contenu passe au-dessus des décorations */
+.page > *:not(.deco) { position: relative; z-index: 1; }
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+.entete {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.entete-ligne {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.entete h1 {
+  font-family: var(--police);
+  font-size: 4.5rem;
+  font-weight: 400;
+  color: var(--rouge);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+.entete-ornement svg { width: 46px; height: 46px; }
+
+.sous-titre {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--doux);
+  margin-top: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   TITRES DE SECTION (encadrés, comme sur le croquis)
+   ========================================================= */
+.titre-section {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  padding: 0.35rem 1.4rem;
+  border: 1px solid var(--encre);
+  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;  /* contour irrégulier, dessiné à la main */
+  margin: 0 0 2.5rem 0;
+}
+
+/* Position du titre de section : gauche ou droite */
+.section-gauche { text-align: left; }
+.section-droite { text-align: right; }
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+.section {
+  margin-bottom: 7rem;
+  position: relative;
+}
+
+/* =========================================================
+   ITEMS EN QUINCONCE (DJs, événements)
+   Chaque item se décale : voir .item-1, .item-2, .item-3
+   ========================================================= */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 5rem;
   text-decoration: none;
-  color: var(--ink);
+  color: var(--encre);
+  width: fit-content;
+  transition: transform 0.3s ease;
+}
+.item:hover { transform: translateX(6px); }
+
+/* Décalages horizontaux pour l'effet quinconce */
+.item-1 { margin-left: 0%; }
+.item-2 { margin-left: 30%; }
+.item-3 { margin-left: 10%; }
+.item-4 { margin-left: 34%; }
+
+/* Ordre inversé : image à gauche, texte à droite */
+.item-inverse { flex-direction: row-reverse; }
+
+.item-vignette {
+  width: 300px;              /* taille des images sur ordinateur */
+  max-width: 42vw;           /* ne dépasse jamais 42% de la largeur d'écran */
+  height: auto;              /* garde le format original de l'image */
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Vignette vide (à remplacer par une vraie image) */
+.item-vignette-vide {
+  width: 220px;
+  height: 270px;
+  max-width: 42vw;
+  border: 1px dashed #d8d4c4;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--doux);
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.item-texte { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.item-nom {
+  font-size: 3rem;
+  font-weight: 400;
   line-height: 1;
 }
-.nav-liens {
+.item-detail {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--doux);
+}
+.item-fleche {
+  font-size: 0.95rem;
+  color: var(--rouge);
+  margin-top: 0.3rem;
+  letter-spacing: 0.05em;
+}
+
+/* Petit trait ondulé sous les noms */
+.ondule { width: 60px; height: 10px; margin-top: 0.2rem; }
+
+/* =========================================================
+   BLOC SYSTÈME SON (pleine largeur, en bas)
+   ========================================================= */
+.bloc-son {
+  text-align: center;
+  margin-top: 4rem;
+}
+.bloc-son p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--doux);
+  max-width: 480px;
+  margin: 1.5rem auto 0 auto;
+}
+
+/* =========================================================
+   TEXTE COURANT
+   ========================================================= */
+p { margin: 0 0 1rem 0; }
+
+a { color: var(--encre); }
+a:hover { color: var(--rouge); }
+
+/* =========================================================
+   PIED DE PAGE
+   ========================================================= */
+footer {
+  border-top: 1px solid var(--encre);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--doux);
+}
+footer a {
+  color: var(--rouge);
+  text-decoration: none;
+}
+footer .footer-ligne { margin-bottom: 0.4rem; }
+
+/* =========================================================
+   RESPONSIVE — sur téléphone on empile tout et on cache
+   la plupart des décorations
+   ========================================================= */
+@media (max-width: 900px) {
+  .entete h1 { font-size: 3rem; }
+  .entete-ornement svg { width: 34px; height: 34px; }
+
+  /* Plus de quinconce : tout empilé, texte au-dessus de l'image */
+  .item-1, .item-2, .item-3, .item-4 { margin-left: 0; }
+
+  .item {
+    flex-direction: column;      /* texte puis image, l'un sous l'autre */
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+  .item-inverse { flex-direction: column; }
+  .item:hover { transform: none; }
+
+  /* Image quasi pleine largeur sur téléphone */
+  .item-vignette {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .item-vignette-vide {
+    width: 100%;
+    max-width: 100%;
+    height: 240px;
+  }
+
+  .item-nom { font-size: 2.2rem; }
+
+  .titre-section { font-size: 1.3rem; margin-bottom: 2rem; }
+
+  /* On masque les grandes décorations qui débordent */
+  .deco-arbre, .deco-soleil-2 { display: none; }
+  .deco-soleil-1 { width: 120px !important; opacity: 0.5 !important; }
+
+  .section { margin-bottom: 5rem; }
+  .page { padding: 2rem 1.4rem 3rem 1.4rem; }
+
+  .bandeau { padding: 0.6rem 0.5rem; }
+  .bandeau svg { width: 28px; height: 28px; }
+}
+
+/* Très petits écrans */
+@media (max-width: 420px) {
+  .entete h1 { font-size: 2.4rem; }
+  .item-nom { font-size: 1.9rem; }
+  .bandeau svg { width: 22px; height: 22px; }
+}
+
+/* =========================================================
+   PAGES INTÉRIEURES : fiches DJ / événement
+   ========================================================= */
+.fiche {
   display: flex;
   gap: 2rem;
+  align-items: flex-start;
 }
-.nav-liens a {
-  font-weight: 500;
-  font-size: 15px;
+.fiche-texte { max-width: 480px; }
+.fiche-texte p { font-size: 1.1rem; }
+.fiche-liens {
+  font-style: italic;
+  font-size: 1rem;
+}
+.fiche-liens a {
+  color: var(--rouge);
   text-decoration: none;
-  color: var(--ink);
-  letter-spacing: 0.03em;
 }
-.nav-liens a:hover { opacity: 0.4; }
-.nav-liens a.actif { font-weight: 800; }
 
-/* --- TITRES --- */
-h1 {
-  font-weight: 900;
-  font-size: 5.5em;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.5rem 0;
-  padding: 0;
+/* Galerie d'images (page événements) */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   max-width: 900px;
 }
-h2 {
-  font-weight: 800;
-  font-size: 2.8em;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  margin: 0 0 1rem 0;
-  padding: 0;
-}
-h3 {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin: 0 0 0.6rem 0;
-}
-
-/* --- PARAGRAPHES --- */
-p {
-  font-weight: 400;
-  font-size: 17px;
-  margin: 0 0 1rem 0;
-  max-width: 620px;
-}
-
-/* --- LIENS --- */
-a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-a:hover { opacity: 0.5; }
-
-/* --- LISTES --- */
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-weight: 400;
-  font-size: 17px;
-}
-li {
-  padding-left: 1.2rem;
-  text-indent: -1.2rem;
-  margin-bottom: 0.4rem;
-}
-li::before {
-  content: "– ";
-  margin-right: 0.3rem;
-}
-
-/* --- SÉPARATEUR --- */
-.sep {
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 3rem 0;
-}
-
-/* --- BLOCS --- */
-.bloc { margin-bottom: 3rem; }
-
-/* --- PAGE ÉVÉNEMENTS : GRILLE --- */
-.evenements-grille {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.evenement-card {
-  display: flex;
-  flex-direction: column;
-}
-.evenement-photo {
+.galerie img {
   width: 100%;
-  aspect-ratio: 3 / 4;   /* format portrait affiche */
-  object-fit: cover;
-  object-position: center top;
+  height: auto;        /* garde le format original */
   display: block;
-  margin-bottom: 0.7rem;
 }
-.evenement-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.evenement-nom {
-  font-weight: 900;
-  font-size: 1.1em;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-.evenement-details {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--ink-soft);
-}
-.evenement-lien {
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  margin-top: 0.3rem;
-  letter-spacing: 0.02em;
-  align-self: flex-start;
-}
-.evenement-lien:hover { opacity: 0.5; }
 
-/* --- PAGE PODCAST --- */
-.episode {
+@media (max-width: 900px) {
+  .fiche { flex-direction: column; gap: 1.5rem; }
+  .galerie { grid-template-columns: 1fr; gap: 1.2rem; }
+}
+
+
+/* =========================================================
+   BLOC DUO : texte à gauche / image à droite (ou l'inverse)
+   Puis texte descriptif en dessous.
+
+   Pour changer la taille des images : modifie le 2e chiffre
+   de grid-template-columns (0.85fr). Plus petit = image plus
+   petite. Ex : 0.7fr pour réduire encore.
+   ========================================================= */
+.duo {
   display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
+  grid-template-columns: 1fr 0.85fr;   /* texte | image */
+  gap: 3.5rem;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 2rem;
 }
-.episode:first-of-type { border-top: 1px solid var(--line); }
-.episode-num {
-  font-weight: 900;
-  font-size: 1.8em;
-  color: #ccc;
-  line-height: 1;
+
+/* Quand l'image est à gauche, on inverse aussi les proportions */
+.duo-inverse { grid-template-columns: 0.85fr 1fr; }
+
+/* Inverse l'ordre : image à gauche, texte à droite */
+.duo-inverse .duo-texte { order: 2; }
+.duo-inverse .duo-image { order: 1; }
+
+.duo-texte { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.duo-nom {
+  font-size: 4rem;
+  line-height: 0.95;
+  font-weight: 400;
+  margin: 0;
+  color: var(--encre);
+  transition: color 0.3s ease;
 }
-.episode-centre {
+/* =========================================================
+   BLOC ÉVÉNEMENT CLIQUABLE
+   Toute la zone (titre + image + description) est un lien.
+   ========================================================= */
+.duo-bloc {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1.5rem;          /* élargit la zone cliquable autour du contenu */
+  margin: 0 -1.5rem;        /* compense le padding pour garder l'alignement */
+  border-radius: 4px;
+  transition: background-color 0.35s ease;
+}
+/* Léger fond au survol : indique clairement que c'est cliquable */
+.duo-bloc:hover { background-color: rgba(200, 16, 46, 0.04); }
+
+/* Le nom passe en rouge quand on survole n'importe où dans le bloc */
+.duo-bloc:hover .duo-nom { color: var(--rouge); }
+
+/* La flèche se décale légèrement */
+.duo-bloc:hover .duo-lien { transform: translateX(4px); }
+
+/* Titre rouge en permanence (ajoute la classe duo-nom-rouge dans le HTML) */
+.duo-nom-rouge { color: var(--rouge); }
+.duo-detail {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--doux);
+}
+.duo-lien {
+  display: inline-block;
+  font-size: 1.05rem;
+  color: var(--rouge);
+  text-decoration: none;
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
+  align-self: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.duo-image img {
+  width: 100%;
+  max-width: 400px;    /* plafond : baisse ce chiffre pour réduire encore */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Texte descriptif sous le duo */
+.duo-description {
+  max-width: 620px;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--encre);
+  margin-top: 1.5rem;
+}
+/* Aligne la description du côté du texte */
+.duo-description-droite { margin-left: auto; text-align: left; }
+
+
+/* =========================================================
+   GRILLE DES DJs : 3 colonnes régulières
+   ========================================================= */
+.grille-djs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 1rem;
+}
+.dj-carte {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-}
-.episode-titre {
-  font-weight: 800;
-  font-size: 1.3em;
-  line-height: 1.1;
-}
-.episode-details {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--ink-soft);
-}
-.episode-lien {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+  gap: 0.8rem;
   text-decoration: none;
+  color: var(--encre);
+  transition: transform 0.3s ease;
+}
+.dj-carte:hover { transform: translateY(-4px); }
+
+.dj-carte img,
+.dj-carte .item-vignette-vide {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.dj-carte .item-vignette-vide { height: 260px; }
+
+.dj-nom {
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--encre);
+  transition: color 0.3s ease;
+}
+.dj-carte:hover .dj-nom { color: var(--rouge); }
+.dj-detail {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--doux);
 }
 
-/* --- PIED DE PAGE --- */
-footer {
-  margin-top: 5rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--ink);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.footer-gauche {
-  font-weight: 800;
-  font-size: 1em;
-  letter-spacing: 0.02em;
-}
-.footer-droite {
-  font-size: 14px;
-  font-weight: 400;
-}
-.footer-droite a { text-decoration: none; }
-.footer-droite a:hover { opacity: 0.5; }
+/* Léger décalage vertical pour casser l'alignement parfait */
+.dj-carte:nth-child(2) { margin-top: 3.5rem; }
+.dj-carte:nth-child(3) { margin-top: 1.2rem; }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 800px) {
-  .evenements-grille { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  body { padding: 1.5rem 1.2rem; }
-  h1 { font-size: 3.2em; }
-  h2 { font-size: 2em; }
-  .nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
-  .nav-liens { flex-wrap: wrap; gap: 1rem; }
-  .evenements-grille { grid-template-columns: 1fr; }
-  .episode { grid-template-columns: 2.5rem 1fr; }
-  .episode-lien { grid-column: 2; }
-  footer { flex-direction: column; gap: 0.5rem; }
+
+/* --- Responsive des nouveaux blocs --- */
+@media (max-width: 900px) {
+  .duo-bloc {
+    padding: 0.8rem;
+    margin: 0 -0.8rem;
+  }
+  .duo-bloc:hover { background-color: transparent; }
+
+  .duo,
+  .duo-inverse {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .duo-image img { max-width: 100%; }
+  .duo-inverse .duo-texte { order: 1; }
+  .duo-inverse .duo-image { order: 2; }
+  .duo-nom { font-size: 2.6rem; }
+  .duo-description { font-size: 1.05rem; margin-top: 1rem; }
+  .duo-description-droite { margin-left: 0; }
+
+  .grille-djs { grid-template-columns: 1fr; gap: 3rem; }
+  .dj-carte:nth-child(2),
+  .dj-carte:nth-child(3) { margin-top: 0; }
+  .dj-nom { font-size: 1.9rem; }
 }
