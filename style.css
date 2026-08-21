@@ -501,3 +501,75 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
   .dj-carte:nth-child(3) { margin-top: 0; }
   .dj-nom { font-size: 1.9rem; }
 }
+
+
+/* =========================================================
+   PHOTOS DES DJs — traitement organique
+   Chaque photo prend une forme de galet irrégulière,
+   penchée légèrement, et se redresse au survol.
+   ========================================================= */
+.dj-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+
+  /* Forme organique : chaque coin a un rayon différent */
+  border-radius: 58% 42% 47% 53% / 45% 40% 60% 55%;
+
+  transform: rotate(-2.5deg);
+  transition: border-radius 0.6s ease,
+              transform 0.5s ease,
+              filter 0.5s ease;
+}
+
+.dj-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(55%) contrast(1.05);
+  transition: filter 0.5s ease, transform 0.7s ease;
+}
+
+/* Chaque carte penche dans un sens différent */
+.dj-carte:nth-child(1) .dj-photo { transform: rotate(-2.5deg); }
+.dj-carte:nth-child(2) .dj-photo { transform: rotate(2deg);
+  border-radius: 44% 56% 52% 48% / 58% 47% 53% 42%; }
+.dj-carte:nth-child(3) .dj-photo { transform: rotate(-1.5deg);
+  border-radius: 50% 50% 40% 60% / 42% 58% 42% 58%; }
+
+/* Au survol : la forme s'arrondit en cercle, la photo se redresse
+   et retrouve toutes ses couleurs */
+.dj-carte:hover .dj-photo {
+  border-radius: 50%;
+  transform: rotate(0deg);
+}
+.dj-carte:hover .dj-photo img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.06);
+}
+
+/* Photos sur la page djs.html : même forme organique */
+.fiche-photo {
+  width: 300px;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 55% 45% 48% 52% / 47% 42% 58% 53%;
+  transition: border-radius 0.6s ease;
+}
+.fiche-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(45%);
+  transition: filter 0.5s ease;
+}
+.fiche-photo:hover { border-radius: 50%; }
+.fiche-photo:hover img { filter: grayscale(0%); }
+
+@media (max-width: 900px) {
+  .fiche-photo { width: 100%; }
+}
