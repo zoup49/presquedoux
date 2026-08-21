@@ -573,3 +573,30 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 @media (max-width: 900px) {
   .fiche-photo { width: 100%; }
 }
+
+/* =========================================================
+   CADRAGE DES PHOTOS DE DJs
+   Si un visage est coupé ou mal placé dans la forme,
+   ajuste les 2 valeurs : object-position: HORIZONTAL VERTICAL;
+
+   Horizontal : 0% = à gauche  |  50% = centre  |  100% = à droite
+   Vertical   : 0% = en haut   |  50% = centre  |  100% = en bas
+
+   Exemple : le visage est trop bas dans le cadre ?
+   → baisse la 2e valeur (30% au lieu de 50%) pour remonter l'image.
+   ========================================================= */
+
+/* Jupiter Jazz — vert, logo à droite */
+.dj-carte:nth-child(1) .dj-photo img { object-position: 50% 10%; }
+
+/* Dj Stoopify — sous la tente */
+.dj-carte:nth-child(2) .dj-photo img { object-position: 85% 55%; }
+
+/* Chiennasse — noir et blanc, visage en bas à gauche */
+.dj-carte:nth-child(3) .dj-photo img { object-position: 10% 100%; }
+
+
+/* Même principe sur la page djs.html */
+#jupiter-jazz .fiche-photo img { object-position: 50% 40%; }
+#dj-stoopify  .fiche-photo img { object-position: 85% 55%; }
+#chiennasse   .fiche-photo img { object-position: 0% 70%; }
