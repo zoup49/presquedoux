@@ -13,13 +13,16 @@
   --police: 'EB Garamond', Georgia, serif;
 }
 
-/* --- COULEURS : change ici, ça s'applique partout --- */
+/* --- COULEURS : change ici, ça s'applique partout ---
+   Version sombre, inspirée de memori-festival.fr.
+   Pour revenir en clair, remets les valeurs en commentaire. */
 :root {
-  --creme:  #fdfbf2;   /* fond de page */
-  --encre:  #1a1a18;   /* texte principal */
-  --rouge:  #c8102e;   /* accent principal (titres) */
-  --vert:   #8a9a2b;   /* accent secondaire */
-  --doux:   #6b6b60;   /* texte secondaire */
+  --creme:  #fdfbf2;   /* fond de page                    (sombre : #100e0b) */
+  --encre:  #1a1a18;   /* texte principal                 (sombre : #e6dfd0) */
+  --rouge:  #c8102e;   /* accent principal                (sombre : #d95f3c) */
+  --vert:   #8a9a2b;   /* accent secondaire               (sombre : #9aa84a) */
+  --doux:   #6b6b60;   /* texte secondaire                (sombre : #8f887a) */
+  --filet:  #d5d0c2;   /* traits de séparation, discrets  (sombre : #2b2823) */
 }
 
 * { box-sizing: border-box; }
@@ -43,7 +46,7 @@ body {
   justify-content: space-around;
   align-items: center;
   padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--encre);
+  border-bottom: 1px solid var(--filet);
   overflow: hidden;
 }
 .bandeau svg { width: 42px; height: 42px; flex-shrink: 0; }
@@ -114,7 +117,7 @@ body {
   font-weight: 400;
   font-style: italic;
   padding: 0.35rem 1.4rem;
-  border: 1px solid var(--encre);
+  border: 1px solid var(--filet);
   border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;  /* contour irrégulier, dessiné à la main */
   margin: 0 0 2.5rem 0;
 }
@@ -169,7 +172,7 @@ body {
   width: 220px;
   height: 270px;
   max-width: 42vw;
-  border: 1px dashed #d8d4c4;
+  border: 1px dashed var(--filet);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -230,7 +233,7 @@ a:hover { color: var(--rouge); }
    PIED DE PAGE
    ========================================================= */
 footer {
-  border-top: 1px solid var(--encre);
+  border-top: 1px solid var(--filet);
   padding: 2.5rem 2rem;
   text-align: center;
   font-size: 1rem;
@@ -337,99 +340,6 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 
 
 /* =========================================================
-   BLOC DUO : texte à gauche / image à droite (ou l'inverse)
-   Puis texte descriptif en dessous.
-
-   Pour changer la taille des images : modifie le 2e chiffre
-   de grid-template-columns (0.85fr). Plus petit = image plus
-   petite. Ex : 0.7fr pour réduire encore.
-   ========================================================= */
-.duo {
-  display: grid;
-  grid-template-columns: 1fr 0.85fr;   /* texte | image */
-  gap: 3.5rem;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-/* Quand l'image est à gauche, on inverse aussi les proportions */
-.duo-inverse { grid-template-columns: 0.85fr 1fr; }
-
-/* Inverse l'ordre : image à gauche, texte à droite */
-.duo-inverse .duo-texte { order: 2; }
-.duo-inverse .duo-image { order: 1; }
-
-.duo-texte { display: flex; flex-direction: column; gap: 0.5rem; }
-
-.duo-nom {
-  font-size: 4rem;
-  line-height: 0.95;
-  font-weight: 400;
-  margin: 0;
-  color: var(--encre);
-  transition: color 0.3s ease;
-}
-/* =========================================================
-   BLOC ÉVÉNEMENT CLIQUABLE
-   Toute la zone (titre + image + description) est un lien.
-   ========================================================= */
-.duo-bloc {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  padding: 1.5rem;          /* élargit la zone cliquable autour du contenu */
-  margin: 0 -1.5rem;        /* compense le padding pour garder l'alignement */
-  border-radius: 4px;
-  transition: background-color 0.35s ease;
-}
-/* Léger fond au survol : indique clairement que c'est cliquable */
-.duo-bloc:hover { background-color: rgba(200, 16, 46, 0.04); }
-
-/* Le nom passe en rouge quand on survole n'importe où dans le bloc */
-.duo-bloc:hover .duo-nom { color: var(--rouge); }
-
-/* La flèche se décale légèrement */
-.duo-bloc:hover .duo-lien { transform: translateX(4px); }
-
-/* Titre rouge en permanence (ajoute la classe duo-nom-rouge dans le HTML) */
-.duo-nom-rouge { color: var(--rouge); }
-.duo-detail {
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--doux);
-}
-.duo-lien {
-  display: inline-block;
-  font-size: 1.05rem;
-  color: var(--rouge);
-  text-decoration: none;
-  margin-top: 0.6rem;
-  letter-spacing: 0.03em;
-  align-self: flex-start;
-  transition: transform 0.3s ease;
-}
-
-.duo-image img {
-  width: 100%;
-  max-width: 400px;    /* plafond : baisse ce chiffre pour réduire encore */
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Texte descriptif sous le duo */
-.duo-description {
-  max-width: 620px;
-  font-size: 1.15rem;
-  line-height: 1.65;
-  color: var(--encre);
-  margin-top: 1.5rem;
-}
-/* Aligne la description du côté du texte */
-.duo-description-droite { margin-left: auto; text-align: left; }
-
-
-/* =========================================================
    GRILLE DES DJs : 3 colonnes régulières
    ========================================================= */
 .grille-djs {
@@ -477,24 +387,6 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 
 /* --- Responsive des nouveaux blocs --- */
 @media (max-width: 900px) {
-  .duo-bloc {
-    padding: 0.8rem;
-    margin: 0 -0.8rem;
-  }
-  .duo-bloc:hover { background-color: transparent; }
-
-  .duo,
-  .duo-inverse {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .duo-image img { max-width: 100%; }
-  .duo-inverse .duo-texte { order: 1; }
-  .duo-inverse .duo-image { order: 2; }
-  .duo-nom { font-size: 2.6rem; }
-  .duo-description { font-size: 1.05rem; margin-top: 1rem; }
-  .duo-description-droite { margin-left: 0; }
 
   .grille-djs { grid-template-columns: 1fr; gap: 3rem; }
   .dj-carte:nth-child(2),
@@ -600,3 +492,252 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 #jupiter-jazz .fiche-photo img { object-position: 50% 40%; }
 #dj-stoopify  .fiche-photo img { object-position: 85% 55%; }
 #chiennasse   .fiche-photo img { object-position: 0% 70%; }
+
+
+/* =========================================================
+   SECTION ÉVÉNEMENTS — version épurée
+   Une ligne par événement : filet fin, nom, méta, vignette.
+   Aucun cadre, aucun fond.
+   ========================================================= */
+.evenement {
+  display: grid;
+  /* Colonne texte plafonnée : l'image vient juste après,
+     au lieu d'être repoussée au bord de la page. */
+  grid-template-columns: minmax(0, 460px) auto;
+  justify-content: start;      /* bloc calé à gauche */
+  align-items: start;
+  gap: 4rem;
+  padding: 3rem 0;
+  text-decoration: none;
+  color: inherit;
+}
+.evenement-texte {
+  max-width: 480px;
+  text-align: left;   /* annule l'alignement à droite de la section */
+}
+
+/* IMAGE À GAUCHE + bloc calé à droite :
+   ajoute la classe "evenement-inverse" dans le HTML */
+.evenement-inverse {
+  grid-template-columns: auto minmax(0, 460px);
+  justify-content: end;
+}
+.evenement-inverse .evenement-texte    { order: 2; }
+.evenement-inverse .evenement-vignette { order: 1; }
+
+.evenement-nom {
+  display: block;
+  font-size: 3.2rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+.evenement:hover .evenement-nom { color: var(--rouge); }
+
+.evenement-meta {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--doux);
+  margin-bottom: 1.2rem;
+}
+
+.evenement-texte p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 1.2rem 0;
+}
+
+.evenement-lien {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rouge);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.evenement:hover .evenement-lien { transform: translateX(5px); }
+
+/* Vignette discrète, alignée à droite */
+.evenement-vignette {
+  width: 242px;
+  height: 308px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(60%) contrast(1.05);
+  transition: filter 0.5s ease;
+}
+.evenement:hover .evenement-vignette { filter: grayscale(0%); }
+
+@media (max-width: 780px) {
+  .evenement {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+  .evenement-nom { font-size: 2.2rem; }
+  .evenement-vignette { width: 100%; height: 240px; }
+  /* Sur mobile, tout revient dans l'ordre normal */
+  .evenement { justify-content: stretch; }
+  .evenement-inverse {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+  .evenement-inverse .evenement-texte    { order: 1; }
+  .evenement-inverse .evenement-vignette { order: 2; }
+}
+
+
+
+/* =========================================================
+   FINITIONS
+   ========================================================= */
+
+/* Photos : léger contraste */
+.dj-photo img,
+.fiche-photo img,
+.galerie img {
+  filter: grayscale(30%) contrast(1.05);
+}
+.dj-carte:hover .dj-photo img,
+.fiche-photo:hover img {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* Sélection de texte */
+::selection { background: var(--rouge); color: #fdfbf2; }
+
+
+
+/* =========================================================
+   MOBILE — ajustements de lisibilité
+   Tout ce qui suit ne s'applique qu'aux écrans < 640px.
+   ========================================================= */
+@media (max-width: 640px) {
+
+  /* --- EN-TÊTE : ornements plus petits, jamais à la ligne --- */
+  .entete-ligne {
+    flex-wrap: nowrap;
+    gap: 0.7rem;
+  }
+  .entete-ornement svg { width: 26px; height: 26px; }
+  .entete h1 { font-size: 2.3rem; }
+  .sous-titre { font-size: 0.95rem; }
+
+  /* --- DÉCORATIONS : masquées, elles flottent mal sur petit écran --- */
+  .deco { display: none; }
+
+  /* --- TOUT ALIGNÉ À GAUCHE ---
+     Sur mobile, l'alternance gauche/droite n'a plus de sens :
+     elle donne juste l'impression d'éléments décrochés. --- */
+  .section-droite,
+  .section-gauche { text-align: left; }
+
+  /* --- TITRES DE SECTION : plus discrets --- */
+  .titre-section { font-size: 1.05rem; }
+
+  /* --- DJs : photos carrées et plus petites --- */
+  .grille-djs { gap: 2rem; }
+  .dj-photo {
+    aspect-ratio: 1 / 1;      /* carré au lieu de portrait */
+    max-width: 200px;         /* baisse ce chiffre pour réduire encore */
+  }
+  .dj-nom { font-size: 1.4rem; }
+  .dj-detail { font-size: 0.85rem; }
+
+  /* --- ÉVÉNEMENTS : titre sur une ligne, image plus basse --- */
+  .evenement { padding: 2rem 0; gap: 1.2rem; }
+  .evenement-nom {
+    font-size: 1.9rem;
+    white-space: nowrap;      /* le nom ne se coupe jamais en deux */
+  }
+  .evenement-meta { font-size: 0.7rem; margin-bottom: 0.9rem; }
+  .evenement-texte p { font-size: 0.95rem; }
+  .evenement-vignette { height: 170px; }
+
+  /* --- ESPACEMENTS GÉNÉRAUX resserrés --- */
+  .section { margin-bottom: 3.5rem; }
+  .page { padding: 1.5rem 1.2rem 2rem 1.2rem; }
+  footer { margin-top: 3rem; }
+}
+
+
+/* =========================================================
+   VERSION MOBILE — mise au propre
+   Ce bloc vient après les autres : il a donc le dernier mot.
+   ========================================================= */
+@media (max-width: 640px) {
+
+  /* --- EN-TÊTE --- */
+  /* Les ornements se détachaient du titre : on les retire */
+  .entete-ornement { display: none; }
+
+  .entete { margin-bottom: 3rem; }
+  .entete h1 {
+    font-size: 2.5rem;
+    white-space: nowrap;   /* le titre reste sur une seule ligne */
+  }
+  .sous-titre {
+    font-size: 0.95rem;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- SECTIONS --- */
+  .section { margin-bottom: 3.5rem; }
+  .titre-section {
+    font-size: 1.15rem;
+    padding: 0.3rem 1.1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  /* --- DJs : photo à gauche, nom à droite --- */
+  .grille-djs { gap: 1.6rem; }
+
+  .dj-carte {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    grid-template-areas:
+      "photo nom"
+      "photo detail";
+    column-gap: 1.1rem;
+    row-gap: 0.15rem;
+    align-content: center;
+    margin-top: 0 !important;   /* annule les décalages du desktop */
+  }
+  .dj-photo {
+    grid-area: photo;
+    aspect-ratio: 1 / 1;        /* carré : bien plus compact */
+    transform: none !important;
+    border-radius: 50%;
+  }
+  .dj-nom    { grid-area: nom;    align-self: end;   font-size: 1.4rem; }
+  .dj-detail { grid-area: detail; align-self: start; font-size: 0.85rem; }
+
+  /* --- ÉVÉNEMENTS --- */
+  .evenement {
+    padding: 2rem 0;
+    gap: 1.2rem;
+  }
+  .evenement-nom  { font-size: 1.9rem; }
+  .evenement-meta { font-size: 0.72rem; margin-bottom: 0.9rem; }
+  .evenement-texte p { font-size: 0.98rem; margin-bottom: 1rem; }
+  .evenement-lien { font-size: 0.78rem; }
+
+  /* Image plus petite, format constant */
+  .evenement-vignette {
+    width: 68%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  /* --- DÉCORATIONS --- */
+  /* Elles flottent en absolu et tombent n'importe où sur petit écran */
+  .deco { display: none; }
+
+  /* --- PIED DE PAGE --- */
+  footer { margin-top: 3rem; }
+}
