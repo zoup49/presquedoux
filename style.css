@@ -495,97 +495,98 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 
 
 /* =========================================================
-   SECTION ÉVÉNEMENTS — version épurée
-   Une ligne par événement : filet fin, nom, méta, vignette.
-   Aucun cadre, aucun fond.
+   SECTION ÉVÉNEMENTS
+   Nom en grand, affiche à côté, une seule ligne d'infos.
    ========================================================= */
+.evenements-liste {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
 .evenement {
   display: grid;
-  /* Colonne texte plafonnée : l'image vient juste après,
-     au lieu d'être repoussée au bord de la page. */
-  grid-template-columns: minmax(0, 460px) auto;
+  grid-template-columns: minmax(0, 430px) auto;
   justify-content: start;      /* bloc calé à gauche */
-  align-items: start;
-  gap: 4rem;
-  padding: 3rem 0;
+  align-items: center;
+  gap: 3rem;
+  padding: 2.2rem 0;
   text-decoration: none;
   color: inherit;
 }
-.evenement-texte {
-  max-width: 480px;
-  text-align: left;   /* annule l'alignement à droite de la section */
-}
 
-/* IMAGE À GAUCHE + bloc calé à droite :
-   ajoute la classe "evenement-inverse" dans le HTML */
+/* Variante : affiche à gauche, bloc calé à droite */
 .evenement-inverse {
-  grid-template-columns: auto minmax(0, 460px);
+  grid-template-columns: auto minmax(0, 430px);
   justify-content: end;
 }
 .evenement-inverse .evenement-texte    { order: 2; }
 .evenement-inverse .evenement-vignette { order: 1; }
 
+.evenement-texte {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+/* Le nom : le seul élément en grand */
 .evenement-nom {
-  display: block;
-  font-size: 3.2rem;
-  line-height: 1;
-  margin-bottom: 0.6rem;
+  font-size: 2.2rem;
+  line-height: 1.05;
+  color: var(--encre);
   transition: color 0.3s ease;
 }
 .evenement:hover .evenement-nom { color: var(--rouge); }
 
-.evenement-meta {
-  display: block;
-  font-size: 0.85rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+/* Toutes les infos sur une seule ligne, même taille */
+.evenement-info {
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--doux);
-  margin-bottom: 1.2rem;
-}
-
-.evenement-texte p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin: 0 0 1.2rem 0;
 }
 
 .evenement-lien {
-  font-size: 0.85rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 1rem;
   color: var(--rouge);
-  display: inline-block;
+  margin-top: 0.3rem;
   transition: transform 0.3s ease;
+  display: inline-block;
 }
-.evenement:hover .evenement-lien { transform: translateX(5px); }
+.evenement:hover .evenement-lien { transform: translateX(4px); }
 
-/* Vignette discrète, alignée à droite */
+/* L'affiche, discrète */
 .evenement-vignette {
-  width: 242px;
-  height: 308px;
+  width: 190px;
+  height: 238px;
   object-fit: cover;
   display: block;
-  filter: grayscale(60%) contrast(1.05);
-  transition: filter 0.5s ease;
+  filter: grayscale(45%);
+  transition: filter 0.45s ease;
 }
 .evenement:hover .evenement-vignette { filter: grayscale(0%); }
 
+
+/* --- Écrans étroits --- */
 @media (max-width: 780px) {
-  .evenement {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 2rem 0;
-  }
-  .evenement-nom { font-size: 2.2rem; }
-  .evenement-vignette { width: 100%; height: 240px; }
-  /* Sur mobile, tout revient dans l'ordre normal */
-  .evenement { justify-content: stretch; }
+  .evenement,
   .evenement-inverse {
     grid-template-columns: 1fr;
     justify-content: stretch;
+    gap: 1rem;
+    padding: 1.8rem 0;
   }
   .evenement-inverse .evenement-texte    { order: 1; }
   .evenement-inverse .evenement-vignette { order: 2; }
+
+  .evenement-nom  { font-size: 1.8rem; }
+  .evenement-info { font-size: 0.95rem; }
+  .evenement-lien { font-size: 0.95rem; }
+
+  .evenement-vignette {
+    width: 62%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
 }
 
 
@@ -610,57 +611,6 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
 
 
 
-/* =========================================================
-   MOBILE — ajustements de lisibilité
-   Tout ce qui suit ne s'applique qu'aux écrans < 640px.
-   ========================================================= */
-@media (max-width: 640px) {
-
-  /* --- EN-TÊTE : ornements plus petits, jamais à la ligne --- */
-  .entete-ligne {
-    flex-wrap: nowrap;
-    gap: 0.7rem;
-  }
-  .entete-ornement svg { width: 26px; height: 26px; }
-  .entete h1 { font-size: 2.3rem; }
-  .sous-titre { font-size: 0.95rem; }
-
-  /* --- DÉCORATIONS : masquées, elles flottent mal sur petit écran --- */
-  .deco { display: none; }
-
-  /* --- TOUT ALIGNÉ À GAUCHE ---
-     Sur mobile, l'alternance gauche/droite n'a plus de sens :
-     elle donne juste l'impression d'éléments décrochés. --- */
-  .section-droite,
-  .section-gauche { text-align: left; }
-
-  /* --- TITRES DE SECTION : plus discrets --- */
-  .titre-section { font-size: 1.05rem; }
-
-  /* --- DJs : photos carrées et plus petites --- */
-  .grille-djs { gap: 2rem; }
-  .dj-photo {
-    aspect-ratio: 1 / 1;      /* carré au lieu de portrait */
-    max-width: 200px;         /* baisse ce chiffre pour réduire encore */
-  }
-  .dj-nom { font-size: 1.4rem; }
-  .dj-detail { font-size: 0.85rem; }
-
-  /* --- ÉVÉNEMENTS : titre sur une ligne, image plus basse --- */
-  .evenement { padding: 2rem 0; gap: 1.2rem; }
-  .evenement-nom {
-    font-size: 1.9rem;
-    white-space: nowrap;      /* le nom ne se coupe jamais en deux */
-  }
-  .evenement-meta { font-size: 0.7rem; margin-bottom: 0.9rem; }
-  .evenement-texte p { font-size: 0.95rem; }
-  .evenement-vignette { height: 170px; }
-
-  /* --- ESPACEMENTS GÉNÉRAUX resserrés --- */
-  .section { margin-bottom: 3.5rem; }
-  .page { padding: 1.5rem 1.2rem 2rem 1.2rem; }
-  footer { margin-top: 3rem; }
-}
 
 
 /* =========================================================
@@ -716,23 +666,8 @@ footer .footer-ligne { margin-bottom: 0.4rem; }
   .dj-nom    { grid-area: nom;    align-self: end;   font-size: 1.4rem; }
   .dj-detail { grid-area: detail; align-self: start; font-size: 0.85rem; }
 
-  /* --- ÉVÉNEMENTS --- */
-  .evenement {
-    padding: 2rem 0;
-    gap: 1.2rem;
-  }
-  .evenement-nom  { font-size: 1.9rem; }
-  .evenement-meta { font-size: 0.72rem; margin-bottom: 0.9rem; }
-  .evenement-texte p { font-size: 0.98rem; margin-bottom: 1rem; }
-  .evenement-lien { font-size: 0.78rem; }
-
-  /* Image plus petite, format constant */
-  .evenement-vignette {
-    width: 68%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-  }
+  /* Sur mobile, plus d'alternance gauche/droite */
+  .section-droite, .section-gauche { text-align: left; }
 
   /* --- DÉCORATIONS --- */
   /* Elles flottent en absolu et tombent n'importe où sur petit écran */
