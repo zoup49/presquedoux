@@ -1,0 +1,316 @@
+/* =========================================================
+   V2 — Presque Doux
+   Inspiré de uselessseconds.com
+   ========================================================= */
+
+
+/* ╔═══════════════════════════════════════════════════════╗
+   ║  1. TYPOGRAPHIE — tout se règle ici                   ║
+   ╚═══════════════════════════════════════════════════════╝
+
+   POUR CHANGER DE POLICE, deux gestes :
+     a) une seule ligne @import doit rester active
+        (les autres sont entourées de marqueurs de commentaire)
+     b) reporte le nom de la police dans --police
+
+   Les réglages qui suivent (taille, graisse, crénage)
+   s'appliquent à tout le site d'un coup.
+   ========================================================= */
+
+/* ---- ACTIVE : Familjen Grotesk (celle d'Useless Seconds) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* ---- EB Garamond — serif, celle de la V1 ----
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+*/
+
+/* ---- Inter — grotesque très neutre ----
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap');
+*/
+
+/* ---- Archivo — un peu plus large ----
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300..700&display=swap');
+*/
+
+/* ---- Space Grotesk — plus marquée, techno ----
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+*/
+
+/* ---- Instrument Sans — proche des grotesques suisses ----
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+*/
+
+:root {
+
+  /* ── La police active ──────────────────────────────────
+     Le nom doit correspondre à l'@import décommenté. */
+  --police: 'Familjen Grotesk', Helvetica, Arial, sans-serif;
+
+  /* ── Corps de texte ─────────────────────────────────── */
+  --taille-base:      16px;
+  --interligne:       1.5;
+
+  /* ── Grand bloc de noms (accueil + événements) ───────── */
+  --taille-titre:     3.1rem;     /* taille maximale */
+  --graisse-titre:    400;        /* 300 fin · 400 · 500 · 600 · 700 gras */
+  --cren-titre:       -0.005em;   /* négatif = plus serré */
+  --interligne-titre: 1.14;
+
+  /* ── Noms des DJs ───────────────────────────────────── */
+  --taille-nom:       1.35rem;
+  --graisse-nom:      400;
+  --cren-nom:         0.01em;
+
+  /* ── Nom du collectif, en haut à gauche ─────────────── */
+  --taille-logo:      1.05rem;
+  --graisse-logo:     700;
+
+  /* ── Petits textes : onglets, légendes, pied de page ── */
+  --taille-petit:     0.88rem;
+  --cren-capitales:   0.13em;     /* pour les libellés en CAPITALES */
+
+
+  /* ╔═════════════════════════════════════════════════════╗
+     ║  2. COULEURS                                        ║
+     ╚═════════════════════════════════════════════════════╝ */
+  --fond:   #fdfbf2;   /* fond de page */
+  --encre:  #1a1a18;   /* texte */
+  --doux:   #8b8b86;   /* texte secondaire */
+  --filet:  #e2e0da;   /* traits de séparation */
+
+  /* ── Largeur du contenu centré ─────────────────────── */
+  --largeur: 1000px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2.5rem 2rem 3rem 2rem;
+  font-family: var(--police);
+  font-size: var(--taille-base);
+  line-height: var(--interligne);
+  color: var(--encre);
+  background: var(--fond);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Tout le contenu vit dans ce conteneur centré */
+.contenant {
+  width: 100%;
+  max-width: var(--largeur);
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.contenant main { flex: 1; }   /* pousse le pied de page en bas */
+
+
+/* =========================================================
+   EN-TÊTE : nom à gauche, onglets en ligne à droite
+   ========================================================= */
+.tete {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.logo {
+  font-size: var(--taille-logo);
+  font-weight: var(--graisse-logo);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.logo span {
+  display: block;
+  font-weight: 400;
+  color: var(--doux);
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  margin-top: 0.15rem;
+}
+
+/* Onglets sur une seule ligne */
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  font-size: var(--taille-petit);
+}
+.nav a { color: var(--doux); }
+.nav a:hover { color: var(--encre); }
+.nav a.actif {
+  color: var(--encre);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* =========================================================
+   BLOC DE NOMS (accueil + haut de la page événements)
+   ========================================================= */
+.bloc-noms {
+  font-size: clamp(1.7rem, 4.6vw, var(--taille-titre));
+  line-height: var(--interligne-titre);
+  font-weight: var(--graisse-titre);
+  letter-spacing: var(--cren-titre);
+  text-transform: uppercase;
+  margin: 0 0 4rem 0;
+}
+/* Quand on survole un nom, les autres pâlissent */
+.bloc-noms:hover a { color: var(--doux); }
+.bloc-noms a:hover { color: var(--encre); }
+
+
+/* =========================================================
+   TITRE DE PAGE
+   ========================================================= */
+.titre-page {
+  font-size: var(--taille-petit);
+  color: var(--doux);
+  margin: 0 0 2rem 0;
+}
+
+
+/* =========================================================
+   FICHES DJ : petite image à gauche, texte à droite
+   ========================================================= */
+.fiche {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 2.2rem;
+  align-items: start;
+  padding: 2.4rem 0;
+  border-top: 1px solid var(--filet);
+}
+.fiche:last-of-type { border-bottom: 1px solid var(--filet); }
+
+.fiche-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.45s ease;
+}
+.fiche:hover .fiche-img { filter: grayscale(0%); }
+
+.fiche h2 {
+  font-size: var(--taille-nom);
+  font-weight: var(--graisse-nom);
+  letter-spacing: var(--cren-nom);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.15;
+}
+.fiche .style {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: var(--cren-capitales);
+  text-transform: uppercase;
+  color: var(--doux);
+  margin: 0.4rem 0 0.9rem 0;
+}
+.fiche p {
+  margin: 0 0 1rem 0;
+  max-width: 560px;
+}
+
+/* Liens sous la bio */
+.fiche-liens {
+  display: flex;
+  gap: 1.4rem;
+  font-size: 0.76rem;
+  letter-spacing: var(--cren-capitales);
+  text-transform: uppercase;
+}
+.fiche-liens a { color: var(--doux); }
+.fiche-liens a:hover { color: var(--encre); }
+
+
+/* =========================================================
+   GRILLE D'AFFICHES (page événements)
+   ========================================================= */
+.affiches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+.affiche img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.45s ease;
+}
+.affiche:hover img { filter: grayscale(0%); }
+.affiche-legende {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--doux);
+  margin-top: 0.5rem;
+}
+
+
+/* =========================================================
+   PIED DE PAGE
+   ========================================================= */
+footer {
+  margin-top: 5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--filet);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  font-size: 0.82rem;
+  color: var(--doux);
+}
+.footer-liens { display: flex; gap: 1.3rem; }
+.footer-liens a:hover { color: var(--encre); }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 700px) {
+  body { padding: 1.6rem 1.3rem 2.5rem 1.3rem; }
+
+  .tete {
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-bottom: 3rem;
+  }
+  .nav { gap: 1.2rem; font-size: 0.88rem; }
+
+  .bloc-noms { font-size: 1.7rem; margin-bottom: 2.5rem; }
+
+  .fiche {
+    grid-template-columns: 100px 1fr;
+    gap: 1.2rem;
+    padding: 1.8rem 0;
+  }
+  .fiche h2 { font-size: 1.25rem; }
+
+  .affiches { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+  footer { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+}
+
+
+/* =========================================================
+   CADRAGE DES PHOTOS DE DJs
+   object-position: HORIZONTAL VERTICAL
+   0% = gauche/haut · 50% = centre · 100% = droite/bas
+   ========================================================= */
+#jupiter-jazz .fiche-img { object-position: 45% 45%; }
+#dj-stoopify  .fiche-img { object-position: 62% 55%; }
+#chiennasse   .fiche-img { object-position: 18% 68%; }
