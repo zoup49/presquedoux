@@ -1,73 +1,44 @@
 /* =========================================================
-   V2 — Presque Doux
-   Inspiré de uselessseconds.com
+   V2 — Sassy Trance
    ========================================================= */
 
 
 /* ╔═══════════════════════════════════════════════════════╗
-   ║  1. TYPOGRAPHIE — tout se règle ici                   ║
-   ╚═══════════════════════════════════════════════════════╝
+   ║  1. TYPOGRAPHIE                                       ║
+   ╚═══════════════════════════════════════════════════════╝ */
 
-   POUR CHANGER DE POLICE, deux gestes :
-     a) une seule ligne @import doit rester active
-        (les autres sont entourées de marqueurs de commentaire)
-     b) reporte le nom de la police dans --police
-
-   Les réglages qui suivent (taille, graisse, crénage)
-   s'appliquent à tout le site d'un coup.
-   ========================================================= */
-
-/* ---- ACTIVE : Familjen Grotesk (celle d'Useless Seconds) ---- */
-@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&display=swap');
-
-/* ---- EB Garamond — serif, celle de la V1 ----
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
-*/
-
-/* ---- Inter — grotesque très neutre ----
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap');
-*/
-
-/* ---- Archivo — un peu plus large ----
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300..700&display=swap');
-*/
-
-/* ---- Space Grotesk — plus marquée, techno ----
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-*/
-
-/* ---- Instrument Sans — proche des grotesques suisses ----
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
-*/
+/* ---- POLICE : colle ici le lien Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap');
 
 :root {
 
-  /* ── La police active ──────────────────────────────────
-     Le nom doit correspondre à l'@import décommenté. */
-  --police: 'Familjen Grotesk', Helvetica, Arial, sans-serif;
+  /* ---- POLICE : écris ici son nom ---- */
+  --police: 'Bricolage Grotesque', Helvetica, Arial, sans-serif;
 
   /* ── Corps de texte ─────────────────────────────────── */
   --taille-base:      16px;
-  --interligne:       1.5;
+  --interligne:       1;
 
   /* ── Grand bloc de noms (accueil + événements) ───────── */
-  --taille-titre:     3.1rem;     /* taille maximale */
-  --graisse-titre:    400;        /* 300 fin · 400 · 500 · 600 · 700 gras */
-  --cren-titre:       -0.005em;   /* négatif = plus serré */
+  --taille-titre:     4.1rem;     /* taille maximale */
+  --graisse-titre:    688;        /* 300 fin · 400 · 500 · 600 · 700 gras */
+  --cren-titre:       -0.00005em;   /* négatif = plus serré */
   --interligne-titre: 1.14;
+  --largeur-titre:    78;         /* 75 = comprimé/bancal · 100 = normal */
+  --opsz-titre:       96;         /* 12 à 96 : à monter pour les grandes tailles */
 
   /* ── Noms des DJs ───────────────────────────────────── */
-  --taille-nom:       1.35rem;
+  --taille-nom:       3.15rem;
   --graisse-nom:      400;
   --cren-nom:         0.01em;
 
   /* ── Nom du collectif, en haut à gauche ─────────────── */
-  --taille-logo:      1.05rem;
+  --taille-logo:      1.15rem;
   --graisse-logo:     700;
 
   /* ── Petits textes : onglets, légendes, pied de page ── */
   --taille-petit:     0.88rem;
-  --cren-capitales:   0.13em;     /* pour les libellés en CAPITALES */
+  --cren-capitales:   0.53em;     /* pour les libellés en CAPITALES */
 
 
   /* ╔═════════════════════════════════════════════════════╗
@@ -162,6 +133,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: var(--graisse-titre);
   letter-spacing: var(--cren-titre);
   text-transform: uppercase;
+  font-variation-settings: 'wdth' var(--largeur-titre), 'opsz' var(--opsz-titre);
   margin: 0 0 4rem 0;
 }
 /* Quand on survole un nom, les autres pâlissent */
