@@ -1,5 +1,5 @@
 /* =========================================================
-   V7 — Sassy Trance
+   V8 — Sassy Trance
    ========================================================= */
 
 
@@ -124,6 +124,20 @@ a { color: inherit; text-decoration: none; }
   color: var(--encre);
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* ---- FLÈCHE DES LIENS EXTERNES ----
+   Sur iPhone et Android, le caractère ↗ est traité comme un emoji
+   et rendu en bleu. Trois protections ici :
+   1. le &#xFE0E; dans le HTML demande la version texte du caractère
+   2. font-variant-emoji: text le confirme aux navigateurs récents
+   3. la pile de polices exclut les polices emoji du système        */
+.fleche {
+  font-family: 'Bricolage Grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-variant-emoji: text;
+  font-size: 0.85em;
+  color: inherit;
+  margin-left: 0.1em;
 }
 
 
