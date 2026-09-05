@@ -1,5 +1,5 @@
 /* =========================================================
-   V6 — Sassy Trance
+   V7 — Sassy Trance
    ========================================================= */
 
 
@@ -35,6 +35,9 @@
   --largeur-nom:      80;         /* 75 = comprimé · 100 = normal */
   --couleur-nom:      var(--encre);
   --taille-bio:       0.92rem;    /* texte de bio, colonnes étroites */
+
+  /* ── Bloc booking ───────────────────────────────────── */
+  --taille-courriel:  1.6rem;     /* taille de l'adresse courriel */
 
   /* ── Nom du collectif, en haut à gauche ─────────────── */
   --taille-logo:      1.15rem;
@@ -235,6 +238,33 @@ a { color: inherit; text-decoration: none; }
 
 
 /* =========================================================
+   BLOC BOOKING (bas de la page djs)
+   ========================================================= */
+.booking {
+  margin: 5rem auto 0 auto;
+  max-width: 44ch;
+  text-align: center;
+}
+.booking p {
+  margin: 0 0 1.2rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+.booking a {
+  display: inline-block;
+  font-size: var(--taille-courriel);
+  font-weight: 800;
+  font-variation-settings: 'wdth' var(--largeur-nom), 'opsz' 96;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.25s ease;
+}
+.booking a:hover { border-bottom-color: var(--encre); }
+
+
+/* =========================================================
    GRILLE D'AFFICHES (page événements)
    ========================================================= */
 .affiches {
@@ -286,6 +316,9 @@ a { color: inherit; text-decoration: none; }
   .fiches { --colonnes-djs: 1; gap: 3rem; }
   .fiche-nom { font-size: 3rem; }
   .fiche p { font-size: 1rem; }
+
+  .booking { margin-top: 3.5rem; }
+  .booking a { font-size: 1.15rem; }   /* l'adresse doit tenir sur une ligne */
 
   .affiches { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
