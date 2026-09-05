@@ -1,5 +1,5 @@
 /* =========================================================
-   V2 — Sassy Trance
+   V6 — Sassy Trance
    ========================================================= */
 
 
@@ -7,12 +7,10 @@
    ║  1. TYPOGRAPHIE                                       ║
    ╚═══════════════════════════════════════════════════════╝ */
 
-/* ---- POLICE : colle ici le lien Google Fonts ---- */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap');
 
 :root {
 
-  /* ---- POLICE : écris ici son nom ---- */
   --police: 'Bricolage Grotesque', Helvetica, Arial, sans-serif;
 
   /* ── Corps de texte ─────────────────────────────────── */
@@ -21,33 +19,38 @@
 
   /* ── Grand bloc de noms (accueil + événements) ───────── */
   --taille-titre:     4.1rem;     /* taille maximale */
-  --graisse-titre:    688;        /* 300 fin · 400 · 500 · 600 · 700 gras */
-  --cren-titre:       -0.00005em;   /* négatif = plus serré */
+  --graisse-titre:    688;
+  --cren-titre:       -0.00005em;
   --interligne-titre: 1.14;
   --largeur-titre:    78;         /* 75 = comprimé/bancal · 100 = normal */
-  --opsz-titre:       96;         /* 12 à 96 : à monter pour les grandes tailles */
+  --opsz-titre:       96;
 
-  /* ── Noms des DJs ───────────────────────────────────── */
-  --taille-nom:       3.15rem;
-  --graisse-nom:      400;
-  --cren-nom:         0.01em;
+  /* ── Fiches DJ (trois colonnes) ─────────────────────── */
+  --colonnes-djs:     3;          /* 3 · 2 · 1 */
+  --ecart-djs:        2.2rem;     /* espace entre les colonnes */
+  --align-fiche:      center;     /* center = tout centré · left = aligné à gauche */
+  --taille-nom:       2.4rem;     /* nom au-dessus de la photo */
+  --graisse-nom:      800;
+  --cren-nom:         -0.02em;    /* négatif = plus serré */
+  --largeur-nom:      80;         /* 75 = comprimé · 100 = normal */
+  --couleur-nom:      var(--encre);
+  --taille-bio:       0.92rem;    /* texte de bio, colonnes étroites */
 
   /* ── Nom du collectif, en haut à gauche ─────────────── */
   --taille-logo:      1.15rem;
   --graisse-logo:     700;
 
-  /* ── Petits textes : onglets, légendes, pied de page ── */
+  /* ── Petits textes : onglets, légendes ──────────────── */
   --taille-petit:     0.88rem;
-  --cren-capitales:   0.53em;     /* pour les libellés en CAPITALES */
+  --cren-capitales:   0.53em;
 
 
   /* ╔═════════════════════════════════════════════════════╗
      ║  2. COULEURS                                        ║
      ╚═════════════════════════════════════════════════════╝ */
-  --fond:   #fdfbf2;   /* fond de page */
-  --encre:  #1a1a18;   /* texte */
-  --doux:   #8b8b86;   /* texte secondaire */
-  --filet:  #e2e0da;   /* traits de séparation */
+  --fond:   #fdfbf2;
+  --encre:  #1a1a18;
+  --doux:   #8b8b86;
 
   /* ── Largeur du contenu centré ─────────────────────── */
   --largeur: 1000px;
@@ -71,7 +74,6 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-/* Tout le contenu vit dans ce conteneur centré */
 .contenant {
   width: 100%;
   max-width: var(--largeur);
@@ -80,7 +82,6 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
 }
-.contenant main { flex: 1; }   /* pousse le pied de page en bas */
 
 
 /* =========================================================
@@ -109,7 +110,6 @@ a { color: inherit; text-decoration: none; }
   margin-top: 0.15rem;
 }
 
-/* Onglets sur une seule ligne */
 .nav {
   display: flex;
   gap: 1.6rem;
@@ -136,33 +136,31 @@ a { color: inherit; text-decoration: none; }
   font-variation-settings: 'wdth' var(--largeur-titre), 'opsz' var(--opsz-titre);
   margin: 0 0 4rem 0;
 }
-/* Quand on survole un nom, les autres pâlissent */
 .bloc-noms:hover a { color: var(--doux); }
 .bloc-noms a:hover { color: var(--encre); }
 
 
 /* =========================================================
-   TITRE DE PAGE
+   FICHES DJ : trois colonnes, nom au-dessus, texte centré dessous
    ========================================================= */
-.titre-page {
-  font-size: var(--taille-petit);
-  color: var(--doux);
-  margin: 0 0 2rem 0;
-}
-
-
-/* =========================================================
-   FICHES DJ : petite image à gauche, texte à droite
-   ========================================================= */
-.fiche {
+.fiches {
   display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 2.2rem;
+  grid-template-columns: repeat(var(--colonnes-djs), 1fr);
+  gap: var(--ecart-djs);
   align-items: start;
-  padding: 2.4rem 0;
-  border-top: 1px solid var(--filet);
 }
-.fiche:last-of-type { border-bottom: 1px solid var(--filet); }
+
+.fiche {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Le nom et la photo */
+.fiche-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
 .fiche-img {
   width: 100%;
@@ -174,33 +172,62 @@ a { color: inherit; text-decoration: none; }
 }
 .fiche:hover .fiche-img { filter: grayscale(0%); }
 
-.fiche h2 {
+/* Le nom du DJ : gros, noir, centré, juste au-dessus de la photo */
+.fiche-nom {
+  order: -1;                       /* le place avant la photo */
+  margin: 0 0 0.5rem 0;
+  text-align: center;
   font-size: var(--taille-nom);
   font-weight: var(--graisse-nom);
   letter-spacing: var(--cren-nom);
+  font-variation-settings: 'wdth' var(--largeur-nom), 'opsz' 96;
+  line-height: 1;
   text-transform: uppercase;
-  margin: 0;
-  line-height: 1.15;
-}
-.fiche .style {
-  display: block;
-  font-size: 0.78rem;
-  letter-spacing: var(--cren-capitales);
-  text-transform: uppercase;
-  color: var(--doux);
-  margin: 0.4rem 0 0.9rem 0;
-}
-.fiche p {
-  margin: 0 0 1rem 0;
-  max-width: 560px;
+  color: var(--couleur-nom);
 }
 
-/* Liens sous la bio */
+/* ---- VARIANTE : nom posé PAR-DESSUS le haut de la photo ----
+   Décommente ce bloc si tu préfères le nom sur l'image.
+   Pense à passer --couleur-nom en clair (#fdfbf2) selon la photo. */
+/*
+.fiche-nom {
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+}
+*/
+
+/* Le texte sous la photo — l'alignement se règle avec --align-fiche */
+.fiche-texte {
+  margin-top: 0.9rem;
+  text-align: var(--align-fiche);
+}
+
+.fiche .style {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--doux);
+  margin: 0 0 0.8rem 0;
+  text-indent: 0.28em;            /* compense l'espace de fin, sinon ça paraît décentré */
+}
+.fiche p {
+  margin: 0 0 1.1rem 0;
+  font-size: var(--taille-bio);
+  line-height: 1.5;
+  text-wrap: balance;             /* équilibre les lignes, plus propre en centré */
+}
+
 .fiche-liens {
   display: flex;
-  gap: 1.4rem;
-  font-size: 0.76rem;
-  letter-spacing: var(--cren-capitales);
+  justify-content: var(--align-fiche);   /* suit le même alignement */
+  gap: 1.1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 .fiche-liens a { color: var(--doux); }
@@ -233,25 +260,16 @@ a { color: inherit; text-decoration: none; }
 
 
 /* =========================================================
-   PIED DE PAGE
+   TABLETTE : deux colonnes
    ========================================================= */
-footer {
-  margin-top: 5rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--filet);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 2rem;
-  font-size: 0.82rem;
-  color: var(--doux);
+@media (max-width: 900px) {
+  .fiches { --colonnes-djs: 2; }
+  .fiche-nom { font-size: 2.6rem; }
 }
-.footer-liens { display: flex; gap: 1.3rem; }
-.footer-liens a:hover { color: var(--encre); }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE : une colonne
    ========================================================= */
 @media (max-width: 700px) {
   body { padding: 1.6rem 1.3rem 2.5rem 1.3rem; }
@@ -261,20 +279,15 @@ footer {
     gap: 1.4rem;
     margin-bottom: 3rem;
   }
-  .nav { gap: 1.2rem; font-size: 0.88rem; }
+  .nav { gap: 1.2rem; font-size: 0.88rem; flex-wrap: wrap; }
 
   .bloc-noms { font-size: 1.7rem; margin-bottom: 2.5rem; }
 
-  .fiche {
-    grid-template-columns: 100px 1fr;
-    gap: 1.2rem;
-    padding: 1.8rem 0;
-  }
-  .fiche h2 { font-size: 1.25rem; }
+  .fiches { --colonnes-djs: 1; gap: 3rem; }
+  .fiche-nom { font-size: 3rem; }
+  .fiche p { font-size: 1rem; }
 
   .affiches { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-
-  footer { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 }
 
 
