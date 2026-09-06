@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Écoute ~ Sassy Trance</title>
+  <link rel="stylesheet" href="style.css?v=14" />
+  <meta property="og:title" content="Sassy Trance" />
+  <meta property="og:description" content="Collectif de musique électronique et ambient à Rimouski." />
+</head>
+<body>
+
+  <div class="contenant">
+
+    <!-- ═══ EN-TÊTE ═══ -->
+    <header class="tete">
+      <a href="index.html" class="logo">
+        Sassy Trance
+        <span>collectif · Rimouski (QC)</span>
+      </a>
+      <nav class="nav">
+        <a href="djs.html">djs</a>
+        <a href="ecoute.html" class="actif">écoute</a>
+        <a href="evenements.html">événements</a>
+        <a href="https://terrelune.ca" target="_blank" rel="noopener noreferrer">terre lune <svg class="fleche" viewBox="0 0 10 10" style="width:.62em;height:.62em;margin-left:.28em;display:inline-block;vertical-align:baseline;overflow:visible" aria-hidden="true" focusable="false"><path d="M2 8 L8 2 M3.6 2 H8 V6.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.instagram.com/paysage__sonore/" target="_blank" rel="noopener noreferrer">instagram <svg class="fleche" viewBox="0 0 10 10" style="width:.62em;height:.62em;margin-left:.28em;display:inline-block;vertical-align:baseline;overflow:visible" aria-hidden="true" focusable="false"><path d="M2 8 L8 2 M3.6 2 H8 V6.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="apropos.html">à propos</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <div class="ecoutes">
+
+        <!-- ═══════════════════════════════════════════════════
+             LECTEUR MIXCLOUD
+             Pour changer de set : remplace ce qui suit "feed="
+             Format : %2Fnom-du-compte%2Fnom-du-set%2F
+             (les %2F sont des barres obliques encodées)
+             Sur Mixcloud : bouton Share → Embed → copie le lien
+             ═══════════════════════════════════════════════════ -->
+        <div class="ecoute">
+          <h2 class="ecoute-nom">Ambient nocturne</h2>
+          <span class="ecoute-meta">Jupiter Jazz · 2026</span>
+          <iframe class="lecteur" height="120" loading="lazy"
+            src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fnom-du-compte%2Fnom-du-set%2F"
+            title="Ambient nocturne — Jupiter Jazz"></iframe>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════
+             LECTEUR SOUNDCLOUD
+             Pour changer de piste : remplace ce qui suit "url="
+             Format : https%3A//soundcloud.com/compte/nom-de-la-piste
+             color=%231a1a18 → c'est ton noir, ne le change pas
+             Sur SoundCloud : Share → Embed → copie l'adresse
+             ═══════════════════════════════════════════════════ -->
+        <div class="ecoute">
+          <h2 class="ecoute-nom">Set d'hiver</h2>
+          <span class="ecoute-meta">Dj Stoopify · 2026</span>
+          <iframe class="lecteur" height="166" loading="lazy" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djstoopify&color=%231a1a18&show_user=true&show_comments=false&show_teaser=false"
+            title="Set d'hiver — Dj Stoopify"></iframe>
+        </div>
+
+        <div class="ecoute">
+          <h2 class="ecoute-nom">Live Paysage Sonore</h2>
+          <span class="ecoute-meta">Jupiter Jazz · 2025</span>
+          <iframe class="lecteur" height="166" loading="lazy" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jupiterjazzzz&color=%231a1a18&show_user=true&show_comments=false&show_teaser=false"
+            title="Live Paysage Sonore — Jupiter Jazz"></iframe>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
